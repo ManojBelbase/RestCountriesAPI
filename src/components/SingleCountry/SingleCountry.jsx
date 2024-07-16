@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import CountryListShimmer from "../shimmerEffect/CountryListShimmer";
 
 const SingleCountry = () => {
   const params = useParams();
-  console.log(params);
   const countryName = params.country;
   const [countryData, setCountryData] = useState(null);
   const [notFound, setNotFound] = useState(false);
@@ -14,7 +14,6 @@ const SingleCountry = () => {
       .then((data) => {
         if (data && data.length > 0) {
           const country = data[0];
-          console.log(country);
           setCountryData({
             flags: country.flags.svg,
             name: country.name.common,
@@ -28,7 +27,34 @@ const SingleCountry = () => {
             currencies: Object.values(country.currencies)
               .map((currency) => currency.name)
               .join(","),
+            borders: country.borders || [],
           });
+
+          // Fetch border countries data
+          if (country.borders && country.borders.length > 0) {
+            Promise.all(
+              country.borders.map((border) =>
+                fetch(`https://restcountries.com/v3.1/alpha/${border}`).then(
+                  (res) => res.json()
+                )
+              )
+            )
+              .then((borderCountries) => {
+                const borderNames = borderCountries.map(
+                  (borderCountry) => borderCountry[0].name.common
+                );
+                setCountryData((prevData) => ({
+                  ...prevData,
+                  borders: borderNames,
+                }));
+              })
+              .catch(() => {
+                setCountryData((prevData) => ({
+                  ...prevData,
+                  borders: [],
+                }));
+              });
+          }
         } else {
           setNotFound(true);
         }
@@ -43,7 +69,7 @@ const SingleCountry = () => {
   }
 
   if (!countryData) {
-    return <div>Loading...</div>;
+    return <CountryListShimmer />; // Render the shimmer effect while loading
   }
 
   return (
@@ -57,7 +83,6 @@ const SingleCountry = () => {
         </span>
         <div className="country-details">
           <img src={countryData.flags} alt="Country Flag" />
-
           <div className="details-text-container">
             <h2 className="font-bold text-3xl mb-4">{countryData.name}</h2>
             <div className="details-text">
@@ -94,9 +119,16 @@ const SingleCountry = () => {
                 <span className="language">{countryData.languages}</span>
               </p>
             </div>
-            <div className="border-countries">
-              <p>Border Countries:</p>
-            </div>
+            {countryData.borders.length > 0 && (
+              <div className="border-countries">
+                <p>Border Countries:</p>
+                {countryData.borders.map((border) => (
+                  <Link key={border} to={`/${border}`}>
+                    {border}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import countriesData from "../../CountriesData";
 import CountriesCard from "./CountriesCard";
+import CountryListShimmer from "../shimmerEffect/CountryListShimmer";
 
 const CountriesList = ({ query }) => {
   const [countriesData, setCountriesData] = useState([]);
@@ -13,22 +13,33 @@ const CountriesList = ({ query }) => {
       });
   }, []);
 
-  const array = countriesData
-    .filter((country) => country.name.common.toLowerCase().includes(query))
-    .map((country, i) => {
-      return (
-        <div key={i}>
-          <CountriesCard
-            image={country.flags.svg}
-            name={country.name.common}
-            population={country.population.toLocaleString("EN-IN")}
-            region={country.region}
-            capital={country.capital?.[0]}
-          />
+  const filteredCountries = countriesData.filter((country) =>
+    country.name.common.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const array = filteredCountries.map((country, i) => (
+    <div key={i}>
+      <CountriesCard
+        image={country.flags.svg}
+        name={country.name.common}
+        population={country.population.toLocaleString("EN-IN")}
+        region={country.region}
+        capital={country.capital?.[0]}
+      />
+    </div>
+  ));
+
+  return (
+    <div className="container">
+      {!countriesData.length ? (
+        <CountryListShimmer />
+      ) : (
+        <div className="px-6 grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+          {array}
         </div>
-      );
-    });
-  return <div className="container grid grid-cols-4 gap-6">{array}</div>;
+      )}
+    </div>
+  );
 };
 
 export default CountriesList;
