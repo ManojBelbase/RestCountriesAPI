@@ -1,16 +1,12 @@
-import ActionWrapper from "./components/Action/ActionWrapper";
-import Header from "./components/Navigation/Header";
-import CountriesWrapper from "./components/Hero/CountriesWrapper";
+import { Outlet } from "react-router-dom";
 import "./index.css";
-import React, { useState } from "react";
+import Header from "./components/Navigation/Header";
 
 function App() {
-  const [query, setQuery] = useState("");
   return (
     <>
       <Header />
-      <ActionWrapper setQuery={setQuery} />
-      <CountriesWrapper query={query} />
+      <Outlet />
     </>
   );
 }

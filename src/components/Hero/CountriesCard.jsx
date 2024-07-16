@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CountriesCard = ({ image, name, population, capital, region }) => {
   return (
-    <a href={`/CountriesDetails?name=${name}`}>
+    <Link to={`/${name}`}>
       <div className="w-48 rounded-md shadow-md hover:translate-x-1">
         <div className="imagesecion max-h-28 h-full w-full object-cover">
           <img src={image} alt="df" className="rounded-sm h-28 w-full " />
@@ -16,7 +17,7 @@ const CountriesCard = ({ image, name, population, capital, region }) => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
