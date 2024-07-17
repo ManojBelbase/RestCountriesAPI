@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CountriesCard = ({ image, name, population, capital, region }) => {
+const CountriesCard = ({ image, name, population, capital, region, data }) => {
   return (
     <>
-      <Link to={`/${name}`}>
+      <Link to={`/${name}`} state={data}>
         <div className="w-48 rounded-md shadow-md border hover:translate-x-1">
           <div className="imagesecion max-h-28 h-full w-full object-cover">
             <img src={image} alt="df" className="rounded-sm h-28 w-full " />
