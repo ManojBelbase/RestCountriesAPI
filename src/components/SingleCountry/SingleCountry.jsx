@@ -70,9 +70,12 @@ export default function CountryDetail() {
   return countryData === null ? (
     "loading..."
   ) : (
-    <main>
+    <main className="mt-6">
       <div className="country-details-container">
-        <span className="back-button" onClick={() => history.back()}>
+        <span
+          className="back-button cursor-pointer"
+          onClick={() => history.back()}
+        >
           <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
         </span>
         <div className="country-details">

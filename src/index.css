@@ -2,17 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  /* background-color: var(--background-color);
-    color: var(--text-color); */
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 body.dark {
-  /* --background-color: hsl(207, 26%, 17%);
-    --text-color: white;
-    --elements-color: hsl(209, 23%, 22%); */
-}
-.header {
-  /* background-color: var(--elements-color); */
-  /* background-color: red; */
+  --background-color: hsl(207, 26%, 17%);
+  --text-color: white;
+  --elements-color: hsl(209, 23%, 22%);
 }
 main {
   margin: 0px 40px;
