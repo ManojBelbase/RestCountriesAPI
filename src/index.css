@@ -10,6 +10,7 @@ body.dark {
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
 }
+
 main {
   margin: 0px 40px;
 }

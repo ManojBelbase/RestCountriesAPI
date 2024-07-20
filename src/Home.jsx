@@ -7,10 +7,10 @@ import React, { useState } from "react";
 function Home() {
   const [query, setQuery] = useState("");
   return (
-    <>
+    <main>
       <ActionWrapper setQuery={setQuery} />
       <CountriesWrapper query={query} />
-    </>
+    </main>
   );
 }
 

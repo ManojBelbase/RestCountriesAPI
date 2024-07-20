@@ -4,7 +4,7 @@ import SelectMenu from "./SelectMenu";
 
 const ActionWrapper = ({ setQuery }) => {
   return (
-    <div className="flex items-center justify-between mt-8 container px-8">
+    <div className="flex items-center justify-between pt-10">
       <Search setQuery={setQuery} />
       <SelectMenu />
     </div>

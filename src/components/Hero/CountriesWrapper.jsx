@@ -4,9 +4,9 @@ import CountriesList from "./CountriesList";
 
 const CountriesWrapper = ({ query }) => {
   return (
-    <div className="container mx-auto mt-10">
+    <main className="pt-10">
       <CountriesList query={query} />
-    </div>
+    </main>
   );
 };
 

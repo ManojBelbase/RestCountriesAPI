@@ -4,10 +4,10 @@ import Header from "./components/Navigation/Header";
 
 function App() {
   return (
-    <>
+    <main>
       <Header />
       <Outlet />
-    </>
+    </main>
   );
 }
 
