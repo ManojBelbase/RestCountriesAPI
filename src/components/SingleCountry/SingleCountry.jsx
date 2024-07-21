@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { Link, useLocation, useParams } from "react-router-dom";
+import { getWidowSize } from "../hooks/useWindowSize";
 
 export default function CountryDetail() {
+  let windowSize = getWidowSize();
   const params = useParams();
   const { state } = useLocation();
   const countryName = params.country;
-
   const [countryData, setCountryData] = useState(null);
   const [notFound, setNotFound] = useState(false);
 
@@ -71,6 +72,7 @@ export default function CountryDetail() {
     "loading..."
   ) : (
     <main className="mt-6">
+      <h1 className="text-center opacity-45">{`${windowSize.width}X${windowSize.height}`}</h1>
       <div className="country-details-container">
         <span
           className="back-button cursor-pointer"
