@@ -83,7 +83,7 @@ export default function CountryDetail() {
         <div className="country-details">
           <img src={countryData.flag} alt={`${countryData.name} flag`} />
           <div className="details-text-container">
-            <h1>{countryData.name}</h1>
+            <h1 className="text-3xl font-bold mb-4">{countryData.name}</h1>
             <div className="details-text">
               <p>
                 <b>Native Name: {countryData.nativeName}</b>

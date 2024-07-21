@@ -13,8 +13,10 @@ const CountriesList = ({ query }) => {
       });
   }, []);
 
-  const filteredCountries = countriesData.filter((country) =>
-    country.name.common.toLowerCase().includes(query.toLowerCase())
+  const filteredCountries = countriesData.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(query.toLowerCase()) ||
+      country.region.toLowerCase().includes(query.toLowerCase())
   );
 
   const array = filteredCountries.map((country, i) => (
@@ -35,7 +37,7 @@ const CountriesList = ({ query }) => {
       {!countriesData.length ? (
         <CountryListShimmer />
       ) : (
-        <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+        <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
           {array}
         </div>
       )}

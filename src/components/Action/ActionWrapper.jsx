@@ -6,7 +6,7 @@ const ActionWrapper = ({ setQuery }) => {
   return (
     <div className="flex items-center justify-between pt-10">
       <Search setQuery={setQuery} />
-      <SelectMenu />
+      <SelectMenu setQuery={setQuery} />
     </div>
   );
 };
